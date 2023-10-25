@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from 'express';
-import routesPatient from '../routes/patient'
+import routesPatient from '../routes/patient';
+import db from '../db/connection';
 
 class Server {
 
@@ -9,36 +10,54 @@ class Server {
     constructor() {
 
         this.app = express();
-        this.port =process.env.PORT || '3000';
+        this.port = process.env.PORT || '3000';
         this.listen();
         this.middlewares();
         this.routes();
+        this.dbConnect();
+
     }
 
     listen() {
-        this.app.listen(this.port, () =>{
+        this.app.listen(this.port, () => {
 
             console.log(`Aplicacion por el puerto ${this.port}`);
-            
+
         })
     }
 
     routes() {
-        this.app.get('/', (req: Request, res: Response) =>{
+        this.app.get('/', (req: Request, res: Response) => {
             res.json({
                 msg: 'API WORKING'
             })
 
-            this.app.use('/pacientes', routesPatient);
+            this.app.use('/patients', routesPatient);
         })
 
     }
 
     middlewares() {
-        
+
         //parseamos el body
         this.app.use(express.json());
     }
+
+    async dbConnect() {
+        try {
+
+            await db.authenticate()
+            console.log('Base de datos conectada');
+
+        } catch (error) {
+
+            console.log(error, "Error al conectarse a base de datos");
+            
+        }
+
+    }
+
+
 }
 
 export default Server;

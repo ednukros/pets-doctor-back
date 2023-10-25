@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updatePatient = exports.postPatient = exports.deletePatient = exports.getPatient = exports.getPatients = void 0;
 const getPatients = (req, res) => {
-    console.log('hola get');
     res.json({
         msg: 'get de patients'
     });
@@ -10,7 +9,6 @@ const getPatients = (req, res) => {
 exports.getPatients = getPatients;
 const getPatient = (req, res) => {
     const { id } = req.params;
-    console.log('hola get');
     res.json({
         msg: 'get de patients',
         id

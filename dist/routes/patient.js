@@ -5,6 +5,7 @@ const patient_1 = require("../controllers/patient");
 const router = (0, express_1.Router)();
 router.get('/', patient_1.getPatients);
 router.get('/:id', patient_1.getPatient);
-router.delete('borrar/:id', patient_1.deletePatient);
+router.delete('delete/:id', patient_1.deletePatient);
 router.post('/', patient_1.postPatient);
+router.put('/:id', patient_1.updatePatient);
 exports.default = router;

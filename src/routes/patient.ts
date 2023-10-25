@@ -1,13 +1,15 @@
 import { Router } from "express";
-import { deletePatient, getPatient, getPatients, postPatient } from "../controllers/patient";
+import { deletePatient, getPatient, getPatients, postPatient, updatePatient } from "../controllers/patient";
 
 const router = Router();
 
 
-router.get('/', getPatients)
-router.get('/:id', getPatient)
-router.delete('borrar/:id', deletePatient)
-router.post('/', postPatient)
+router.get('/', getPatients);
+router.get('/:id', getPatient);
+router.delete('delete/:id', deletePatient);
+router.post('/', postPatient);
+router.put('/:id', updatePatient);
+
 
 
 

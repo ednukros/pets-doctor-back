@@ -1,7 +1,6 @@
 import { Request, Response } from 'express'
 
 export const getPatients = (req: Request, res: Response) => {
-    console.log('hola get');
 
     res.json({
         msg:'get de patients'
@@ -12,7 +11,6 @@ export const getPatients = (req: Request, res: Response) => {
 export const getPatient  = (req: Request, res: Response) => {
 
     const { id } = req.params;
-    console.log('hola get');
 
 
     res.json({
