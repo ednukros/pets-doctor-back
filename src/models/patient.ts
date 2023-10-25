@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
 
-const Producto = db.define('Patient', {
+const Patient = db.define('Patient', {
 
     name: {
         type: DataTypes.STRING
@@ -22,4 +22,9 @@ const Producto = db.define('Patient', {
 
 
 
+},{
+    createdAt: false,
+    updatedAt:false
 })
+
+export default Patient;
