@@ -19,38 +19,73 @@ const getPatients = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     res.json(listPatient);
 });
 exports.getPatients = getPatients;
-const getPatient = (req, res) => {
+const getPatient = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    res.json({
-        msg: 'get de patients',
-        id
-    });
-};
+    const patient = yield patient_1.default.findByPk(id);
+    if (patient) {
+        res.json(patient);
+    }
+    else {
+        res.status(404).json({
+            msg: `No existe el paciente con id ${id}`
+        });
+    }
+});
 exports.getPatient = getPatient;
-const deletePatient = (req, res) => {
+const deletePatient = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    res.json({
-        msg: 'delete de patients',
-        id
-    });
-};
+    const patient = yield patient_1.default.findByPk(id);
+    if (!patient) {
+        res.status(404).json({
+            msg: `No existe un paciente con el id ${id}`
+        });
+    }
+    else {
+        yield patient.destroy();
+        res.json({
+            msg: 'Paciente eliminado con exito'
+        });
+    }
+});
 exports.deletePatient = deletePatient;
-const postPatient = (req, res) => {
+const postPatient = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
-    res.json({
-        msg: 'post patients',
-        body
-    });
-};
+    try {
+        yield patient_1.default.create(body);
+        res.json({
+            msg: 'Paciente añadido con exito'
+        });
+    }
+    catch (error) {
+        console.log(error);
+        res.json({
+            msg: 'Ouch, no se pudo crear el paciente :('
+        });
+    }
+});
 exports.postPatient = postPatient;
-const updatePatient = (req, res) => {
+const updatePatient = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     const { id } = req.params;
-    console.log(body);
-    res.json({
-        msg: 'update patients',
-        id,
-        body
-    });
-};
+    try {
+        const patient = yield patient_1.default.findByPk(id);
+        if (patient) {
+            yield patient.update(body);
+            res.json({
+                msg: 'Paciente actualizado'
+            });
+        }
+        else {
+            res.status(404).json({
+                msg: 'No existe un paciente con ese id'
+            });
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.json({
+            msg: 'Ouch, no se pudo editar el paciente :('
+        });
+    }
+});
 exports.updatePatient = updatePatient;

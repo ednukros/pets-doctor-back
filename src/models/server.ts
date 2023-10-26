@@ -29,7 +29,7 @@ class Server {
     routes() {
         this.app.get('/', (req: Request, res: Response) => {
             res.json({
-                msg: 'API WORKING'
+                msg: 'API pet doctor WORKING'
             })
 
             this.app.use('/patients', routesPatient);

@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/', getPatients);
 router.get('/:id', getPatient);
-router.delete('delete/:id', deletePatient);
+router.delete('/:id', deletePatient);
 router.post('/', postPatient);
 router.put('/:id', updatePatient);
 

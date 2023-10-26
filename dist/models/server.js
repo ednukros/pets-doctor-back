@@ -32,7 +32,7 @@ class Server {
     routes() {
         this.app.get('/', (req, res) => {
             res.json({
-                msg: 'API WORKING'
+                msg: 'API pet doctor WORKING'
             });
             this.app.use('/patients', patient_1.default);
         });

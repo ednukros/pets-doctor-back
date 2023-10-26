@@ -8,54 +8,97 @@ export const getPatients = async (req: Request, res: Response) => {
 
 }
 
-export const getPatient = (req: Request, res: Response) => {
+export const getPatient = async (req: Request, res: Response) => {
 
     const { id } = req.params;
+    const patient = await Patient.findByPk(id)
 
 
-    res.json({
-        msg: 'get de patients',
-        id
-    })
+    if (patient) {
+        res.json(patient)
+
+    } else {
+        res.status(404).json({
+            msg: `No existe el paciente con id ${id}`
+        })
+    }
 
 }
 
-export const deletePatient = (req: Request, res: Response) => {
+export const deletePatient = async (req: Request, res: Response) => {
 
     const { id } = req.params;
+    const patient = await Patient.findByPk(id)
 
+    if (!patient) {
+        res.status(404).json({
+            msg: `No existe un paciente con el id ${id}`
+        })
 
-    res.json({
-        msg: 'delete de patients',
-        id
-    })
+    } else {
+        await patient.destroy();
+        res.json({
+            msg: 'Paciente eliminado con exito'
+        })
+
+    }
+
 
 }
 
-export const postPatient = (req: Request, res: Response) => {
+export const postPatient = async (req: Request, res: Response) => {
 
     const { body } = req;
 
-    res.json({
-        msg: 'post patients',
-        body
+    try {
+        await Patient.create(body);
+        res.json({
+            msg: 'Paciente añadido con exito'
+        })
 
-    })
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            msg:'Ouch, no se pudo crear el paciente :('
+        })
+        
+
+    }
+
+
+
 
 }
 
-export const updatePatient = (req: Request, res: Response) => {
+export const updatePatient = async (req: Request, res: Response) => {
 
     const { body } = req;
     const { id } = req.params;
+try {
+    const patient = await Patient.findByPk(id)
+    if (patient) {
+        await patient.update(body);
+        res.json({
+            msg:'Paciente actualizado'
+        })
+      
+    } else {
+        res.status(404).json({
+            msg:'No existe un paciente con ese id'
+        })
+        
+    }
 
-    console.log(body);
+} catch (error) {
 
+    console.log(error);
     res.json({
-        msg: 'update patients',
-        id,
-        body
-
+        msg:'Ouch, no se pudo editar el paciente :('
     })
+    
+}
+
+
 
 }
