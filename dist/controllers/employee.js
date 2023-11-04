@@ -13,15 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateEmployee = exports.postEmployee = exports.deleteEmployee = exports.getEmployee = exports.getEmployees = void 0;
-const patient_1 = __importDefault(require("../models/patient"));
+const employee_1 = __importDefault(require("../models/employee"));
 const getEmployees = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const listEmployee = yield patient_1.default.findAll();
+    const listEmployee = yield employee_1.default.findAll();
     res.json(listEmployee);
 });
 exports.getEmployees = getEmployees;
 const getEmployee = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const patient = yield patient_1.default.findByPk(id);
+    const patient = yield employee_1.default.findByPk(id);
     if (patient) {
         res.json(patient);
     }
@@ -34,7 +34,7 @@ const getEmployee = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getEmployee = getEmployee;
 const deleteEmployee = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const patient = yield patient_1.default.findByPk(id);
+    const patient = yield employee_1.default.findByPk(id);
     if (!patient) {
         res.status(404).json({
             msg: `No existe un paciente con el id ${id}`
@@ -51,7 +51,7 @@ exports.deleteEmployee = deleteEmployee;
 const postEmployee = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        yield patient_1.default.create(body);
+        yield employee_1.default.create(body);
         res.json({
             msg: 'Paciente añadido con exito'
         });
@@ -68,7 +68,7 @@ const updateEmployee = (req, res) => __awaiter(void 0, void 0, void 0, function*
     const { body } = req;
     const { id } = req.params;
     try {
-        const patient = yield patient_1.default.findByPk(id);
+        const patient = yield employee_1.default.findByPk(id);
         if (patient) {
             yield patient.update(body);
             res.json({
