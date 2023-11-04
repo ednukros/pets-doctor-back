@@ -1,6 +1,9 @@
 import express, { Application, Request, Response } from 'express';
 import routesPatient from '../routes/patient';
+import routesEmployee from '../routes/employee';
+
 import db from '../db/connection';
+import cors from 'cors';
 
 class Server {
 
@@ -33,7 +36,9 @@ class Server {
             })
 
             this.app.use('/patients', routesPatient);
+            this.app.use('/employees', routesEmployee );
         })
+        
 
     }
 
@@ -41,6 +46,11 @@ class Server {
 
         //parseamos el body
         this.app.use(express.json());
+
+        //cors
+        this.app.use(cors());
+
+
     }
 
     async dbConnect() {

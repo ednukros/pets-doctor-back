@@ -19,6 +19,15 @@ const Patient = db.define('Patient', {
     next_appointment: {
         type: DataTypes.DATE
     },
+    owner: {
+        type: DataTypes.STRING
+    },
+    phoneNumber: {
+        type: DataTypes.NUMBER
+    },
+    email: {
+        type:DataTypes.STRING
+    }
 
 
 
