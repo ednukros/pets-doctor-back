@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const patient_1 = __importDefault(require("../routes/patient"));
 const employee_1 = __importDefault(require("../routes/employee"));
+const appointment_1 = __importDefault(require("../routes/appointment"));
 const connection_1 = __importDefault(require("../db/connection"));
 const cors_1 = __importDefault(require("cors"));
 class Server {
@@ -38,6 +39,7 @@ class Server {
             });
             this.app.use('/patients', patient_1.default);
             this.app.use('/employees', employee_1.default);
+            this.app.use('/apointments', appointment_1.default);
         });
     }
     middlewares() {

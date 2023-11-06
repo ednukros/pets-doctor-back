@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import routesPatient from '../routes/patient';
 import routesEmployee from '../routes/employee';
+import routesAppointment from '../routes/appointment';
 
 import db from '../db/connection';
 import cors from 'cors';
@@ -37,6 +38,7 @@ class Server {
 
             this.app.use('/patients', routesPatient);
             this.app.use('/employees', routesEmployee );
+            this.app.use('/apointments', routesAppointment);
         })
         
 

@@ -2,28 +2,23 @@ import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
 
-const Employee = db.define('Employee', {
+const Appointment = db.define('Appointment', {
 
-    name: {
+    id_patient: {
         type: DataTypes.STRING
     },
    
-    phoneNumber: {
+    namePatient: {
         type: DataTypes.NUMBER
     },
-    email: {
+    nameCustomer: {
         type:DataTypes.STRING
     },
-    password: {
+    dateOfAppointment: {
         type:DataTypes.STRING
-    },
-    speciality: {
-        type:DataTypes.STRING
-    },
-    image: {
-        type:DataTypes.STRING
-
     }
+   
+  
 
 
 
@@ -32,4 +27,4 @@ const Employee = db.define('Employee', {
     updatedAt:false
 })
 
-export default Employee;
+export default Appointment;
