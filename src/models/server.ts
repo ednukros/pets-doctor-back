@@ -38,7 +38,7 @@ class Server {
 
             this.app.use('/patients', routesPatient);
             this.app.use('/employees', routesEmployee );
-            this.app.use('/apointments', routesAppointment);
+            this.app.use('/appointments', routesAppointment);
         })
         
 

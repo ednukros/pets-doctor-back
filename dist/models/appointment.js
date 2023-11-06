@@ -10,7 +10,7 @@ const Appointment = connection_1.default.define('Appointment', {
         type: sequelize_1.DataTypes.STRING
     },
     namePatient: {
-        type: sequelize_1.DataTypes.NUMBER
+        type: sequelize_1.DataTypes.STRING
     },
     nameCustomer: {
         type: sequelize_1.DataTypes.STRING

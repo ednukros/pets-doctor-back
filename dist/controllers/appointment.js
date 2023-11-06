@@ -17,6 +17,7 @@ const appointment_1 = __importDefault(require("../models/appointment"));
 const getAppointments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listAppointment = yield appointment_1.default.findAll();
     res.json(listAppointment);
+    console.log(listAppointment);
 });
 exports.getAppointments = getAppointments;
 const getAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

@@ -39,7 +39,7 @@ class Server {
             });
             this.app.use('/patients', patient_1.default);
             this.app.use('/employees', employee_1.default);
-            this.app.use('/apointments', appointment_1.default);
+            this.app.use('/appointments', appointment_1.default);
         });
     }
     middlewares() {

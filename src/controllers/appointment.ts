@@ -5,6 +5,7 @@ export const getAppointments = async (req: Request, res: Response) => {
 
     const listAppointment = await Appointment.findAll()
     res.json(listAppointment);
+    console.log(listAppointment)
 
 }
 

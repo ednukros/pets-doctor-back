@@ -9,7 +9,7 @@ const Appointment = db.define('Appointment', {
     },
    
     namePatient: {
-        type: DataTypes.NUMBER
+        type: DataTypes.STRING
     },
     nameCustomer: {
         type:DataTypes.STRING
