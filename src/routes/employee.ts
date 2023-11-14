@@ -1,13 +1,15 @@
 import { Router } from "express";
-import { deleteEmployee, getEmployee, getEmployees, postEmployee, updateEmployee } from "../controllers/employee";
+import { deleteEmployee, getEmployee, getEmployees, postEmployee, updateEmployee, postLogin } from "../controllers/employee";
 
 const router = Router();
 
-
+router.post('/registro', postEmployee);
+router.post('/login', postLogin);
 router.get('/', getEmployees);
-router.get('/:id', getEmployee);
-router.delete('/:id', deleteEmployee);
-router.post('/', postEmployee);
+router.get('/empleado/:id', getEmployee);
+router.delete('/borrar/:id', deleteEmployee);
+
+
 router.put('/:id', updateEmployee);
 
 

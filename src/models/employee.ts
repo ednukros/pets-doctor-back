@@ -3,7 +3,26 @@ import db from '../db/connection';
 
 
 const Employee = db.define('Employee', {
-
+    userName:{
+        type: DataTypes.STRING,
+        allowNull:false,
+        unique: true
+    } ,
+    email: {
+        type: DataTypes.STRING,
+        allowNull:false,
+        unique: true
+    } ,
+    password:{
+        type: DataTypes.STRING,
+        allowNull:false,
+        unique: false
+    } ,
+    role: {
+        type: DataTypes.STRING,
+        defaultValue: 'vet',
+        unique: false
+    },
     name: {
         type: DataTypes.STRING
     },
@@ -11,12 +30,7 @@ const Employee = db.define('Employee', {
     phoneNumber: {
         type: DataTypes.NUMBER
     },
-    email: {
-        type:DataTypes.STRING
-    },
-    password: {
-        type:DataTypes.STRING
-    },
+   
     speciality: {
         type:DataTypes.STRING
     },
